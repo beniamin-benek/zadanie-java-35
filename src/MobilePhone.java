@@ -18,11 +18,11 @@ class MobilePhone {
 
     static MobilePhone createPhone(int a) { //zmienna a mówi nam, który telefon z rzędu wczytujemy
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Podaj imię właściciela " + a + ". telefonu: ");
+        System.out.print("Podaj imię właściciela " + (a + 1) + ". telefonu: ");
         String firstName1 = scanner.nextLine();
-        System.out.print("Podaj nazwisko właściciela " + a + ". telefonu: ");
+        System.out.print("Podaj nazwisko właściciela " + (a + 1) + ". telefonu: ");
         String secondName1 = scanner.nextLine();
-        System.out.print("Podaj numer właściciela " + a + ". telefonu: ");
+        System.out.print("Podaj numer właściciela " + (a + 1) + ". telefonu: ");
         int number1 = scanner.nextInt(); scanner.nextLine();
         MobilePhone mobilePhone1 = new MobilePhone(firstName1, secondName1, number1);
         return mobilePhone1;

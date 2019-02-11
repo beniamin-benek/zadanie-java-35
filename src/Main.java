@@ -1,41 +1,38 @@
+import java.util.Arrays;
+
 class Main {
 
     public static void main(String[] args) {
 
-        MobilePhone[] mobilePhones = new MobilePhone[3];
-        MobilePhone mobilePhone1 = new MobilePhone();
-        MobilePhone mobilePhone2 = new MobilePhone();
-        MobilePhone mobilePhone3 = new MobilePhone();
+        MobilePhone[] mobilePhones = new MobilePhone[5];
+        MobilePhone mobilePhone = new MobilePhone();
 
-        //pierwszy telefon:
-        mobilePhone1 = MobilePhone.createPhone(1);
-
-        //drugi telefon:
+        int i = 0;
         do {
-            mobilePhone2 = MobilePhone.createPhone(2);
+            mobilePhone = MobilePhone.createPhone(i);
+            if(!chceckArray(mobilePhone,mobilePhones)){
+                mobilePhones[findFirstEmptyIndex(mobilePhones)] = mobilePhone;
+                i++;
+            }
+        } while (i < mobilePhones.length);
 
-            if(mobilePhone2.equals(mobilePhone1))
-                System.out.println("Błąd. Podany numer już istnieje. Spróbuj ponownie:");
-
-        } while(mobilePhone2.equals(mobilePhone1));
-
-        //trzeci telefon:
-        do {
-            mobilePhone3 = MobilePhone.createPhone(3);
-
-            if(mobilePhone3.equals(mobilePhone1) || mobilePhone3.equals(mobilePhone2))
-                System.out.println("Błąd. Podany numer już istnieje. Spróbuj ponownie:");
-
-        } while(mobilePhone3.equals(mobilePhone1) || mobilePhone3.equals(mobilePhone2));
-
-        //dodanie do tablicy
-        mobilePhones[0] = mobilePhone1;
-        mobilePhones[1] = mobilePhone2;
-        mobilePhones[2] = mobilePhone3;
-
-        for (int i = 0; i < mobilePhones.length; i++)
-            System.out.println("\nTelefon nr " + (i + 1) + ": " + mobilePhones[i].toString());
+        for (int j = 0; j < mobilePhones.length; j++)
+            System.out.println("\nTelefon nr " + (j + 1) + ": " + mobilePhones[j].toString());
 
     }
 
+    private static boolean chceckArray (MobilePhone mobilePhone, MobilePhone[] mobilePhones) {
+        return Arrays.asList(mobilePhones).contains(mobilePhone);
+    }
+
+    private static int findFirstEmptyIndex(MobilePhone[] mobilePhones) {
+        int firstEmpty;
+        for (int i = 0; i < mobilePhones.length; i++) {
+            if(mobilePhones[i] == null) {
+                firstEmpty = i;
+                return firstEmpty;
+            }
+        }
+        return -1;
+    }
 }
